@@ -13,8 +13,17 @@ class TourController extends Controller
     // /api/v1/travels/{slug}/tours?priceFrom=123&priceTo=456&dateFrom=2023-06-01&dateTo=2023-07-01
     public function index(Travel $travel, Request $request)
     {
+        $request->validate([
+            'priceFrom' => 'numeric',
+            'priceTo' => 'numeric',
+            'dateFrom' => 'date',
+            'dateTo' => 'date',
+            'sortBy' => Rule::in(['price']),
+            'sortOrder' => Rule::in(['asc', 'desc']),
+        ]);
+
         $tours = $travel->tours()
-            ->when($request->priceFrom, function ($query) use ($request) {
+            /*->when($request->priceFrom, function ($query) use ($request) {
                 $query->where('price', '>=', $request->priceFrom * 100);
             })
             ->when($request->priceTo, function ($query) use ($request) {
@@ -25,6 +34,14 @@ class TourController extends Controller
             })
             ->when($request->dateTo, function ($query) use ($request) {
                 $query->where('starting_date', '<=', $request->dateTo);
+            })*/
+            ->when($request->sortBy, function ($query) use ($request) {
+                if (!in_array($request->sortBy, ['price'])
+                    || (!in_array($request->sortOrder, ['asc', 'desc']))) {
+                    return;
+                }
+
+                $query->orderBy($request->sortBy, $request->sortOrder);
             })
             ->orderBy('starting_date')
             ->paginate();
