@@ -9,6 +9,8 @@ class TravelController extends Controller
 {
     public function index()
     {
-        return Travel::where('is_public', true)->get();
+        $travels = Travel::where('is_public', true)->get();
+
+        return TravelResource::collection($travels);
     }
 }
