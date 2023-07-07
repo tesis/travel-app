@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('travel_id')->constrained('travels');
+            $table->foreignUuid('travel_id')->constrained('travels');
             $table->string('name');
             $table->date('starting_date');
             $table->date('ending_date');

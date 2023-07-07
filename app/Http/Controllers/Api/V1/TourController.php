@@ -15,7 +15,7 @@ class TourController extends Controller
     public function index(Travel $travel, ToursListRequest $request)
     {
         $tours = $travel->tours()
-            /*->when($request->priceFrom, function ($query) use ($request) {
+            ->when($request->priceFrom, function ($query) use ($request) {
                 $query->where('price', '>=', $request->priceFrom * 100);
             })
             ->when($request->priceTo, function ($query) use ($request) {
@@ -26,7 +26,7 @@ class TourController extends Controller
             })
             ->when($request->dateTo, function ($query) use ($request) {
                 $query->where('starting_date', '<=', $request->dateTo);
-            })*/
+            })
             ->when($request->sortBy, function ($query) use ($request) {
                 if (!in_array($request->sortBy, ['price'])
                     || (!in_array($request->sortOrder, ['asc', 'desc']))) {
