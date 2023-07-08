@@ -32,6 +32,7 @@ Route::get('travels/{travel}/tours', [TourController::class, 'index']);
 // Use sanctum middleware to protect the endpoint
 Route::prefix('admin')->middleware(['auth:sanctum'])->group(function () {
     Route::post('travels', [AdminTravelController::class, 'store']);
+    Route::post('travels/{travel}/tours', [AdminTourController::class, 'store']);
 });
 
 Route::post('login', LoginController::class);
