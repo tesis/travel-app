@@ -20,17 +20,6 @@ class Tour extends Model
         'price',
     ];
 
-    /**
-     * Get the route key for the model.
-     * OR define directly in routes
-     *
-     * @return string
-     */
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
-
     public function travel(): BelongsTo
     {
         return $this->belongsTo(Travel::class);

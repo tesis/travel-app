@@ -17,6 +17,7 @@ class TourFactory extends Factory
     public function definition(): array
     {
         return [
+            'travel_id' => null,
             'name' => fake()->text(20),
             'starting_date' => now(),
             'ending_date' => now()->addDays(rand(1, 10)),

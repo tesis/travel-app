@@ -27,8 +27,8 @@ class AdminTravelTest extends TestCase
         $user->roles()->attach(Role::where('name', 'editor')->value('id'));
         $response = $this->actingAs($user)->postJson('/api/v1/admin/travels');
 
-        $response->assertStatus(422);
-        // $response->assertStatus(403);
+        // $response->assertStatus(422);
+        $response->assertStatus(403);
     }
 
     public function test_saves_travel_successfully_with_valid_data(): void
@@ -54,6 +54,5 @@ class AdminTravelTest extends TestCase
 
         $response = $this->get('/api/v1/travels');
         $response->assertJsonFragment(['name' => 'Travel name']);
-        $this->assertTrue(true);
     }
 }
