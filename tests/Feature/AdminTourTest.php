@@ -36,8 +36,10 @@ class AdminTourTest extends TestCase
     public function test_saves_tour_successfully_with_valid_data(): void
     {
         $this->seed(RoleSeeder::class);
+
         $user = User::factory()->create();
         $user->roles()->attach(Role::where('name', 'admin')->value('id'));
+
         $travel = Travel::factory()->create();
 
         $response = $this->actingAs($user)->postJson('/api/v1/admin/travels/'.$travel->id.'/tours', [
@@ -46,17 +48,18 @@ class AdminTourTest extends TestCase
         $response->assertStatus(404);
         // $response->assertStatus(422);
 
-        $response = $this->actingAs($user)->postJson('/api/v1/admin/travels/'.$travel->id.'/tours', [
+        $response = $this->actingAs($user)->postJson('/api/v1/admin/travels/'.$travel->slug.'/tours', [
             'name' => 'Tour name',
             'starting_date' => now()->toDateString(),
             'ending_date' => now()->addDay()->toDateString(),
             'price' => 123.45,
         ]);
 
-        $response->assertStatus(404);
-        // $response->assertStatus(201);
+        $response
+            ->assertStatus(201)
+            ->assertJsonPath('data.name', 'Tour name');
 
-        // $response = $this->get('/api/v1/travels/'.$travel->slug.'/tours');
-        // $response->assertJsonFragment(['name' => 'Tour name']);
+        $response = $this->get('/api/v1/travels/'.$travel->slug.'/tours');
+        $response->assertJsonFragment(['name' => 'Tour name']);
     }
 }

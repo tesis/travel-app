@@ -6,6 +6,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Travel;
 use App\Models\Tour;
+use App\Models\User;
+use App\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,15 +17,20 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(RoleSeeder::class);
-        /*$travels = Travel::factory(10)->create();
-        foreach ($travels as $travel) {
-            Tour::factory()->create([
-                'travel_id' => $travel->id,
-            ]);
-        }*/
+
+        // User can be created with php artisan user:create
+        $user = User::factory()->create([
+            'name' => 'Administrator',
+            'email' => 'admin@admin.admin',
+            'password' => '11111111',
+        ]);
+
+        $user->roles()->attach(Role::where('name', 'admin')->value('id'));
 
         $travel = Travel::factory()->create([
-            'id' => "999a6b3b-e092-4439-b5c1-4e5691baf424"
+            'id' => "999a6b3b-e092-4439-b5c1-4e5691baf424",
+            'name' => 'Best Travel',
+            'slug' => 'best-travel'
         ]);
 
         $expensiveTour = Tour::factory()->create([
