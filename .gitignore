@@ -20,3 +20,4 @@ yarn-error.log
 # sqlite db
 /database.sqlite
 /my_db
+/public/docs/

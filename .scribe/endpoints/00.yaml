@@ -1,0 +1,428 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/user
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/travels
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":"999a6b3b-e092-4439-b5c1-4e5691baf424","name":"Best Travel","slug":"best-travel","description":"Quis porro mollitia et recusandae odio qui. Veritatis vero quas vel quo.","number_of_days":10,"number_of_nights":9},{"id":"999ab0bb-d332-4d8b-a200-1ba9ec65f369","name":"My travel","slug":"my-travel","description":"A very excuted yourney!","number_of_days":3,"number_of_nights":2}],"links":{"first":"http:\/\/localhost\/api\/v1\/travels?page=1","last":"http:\/\/localhost\/api\/v1\/travels?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/v1\/travels?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/v1\/travels","per_page":15,"to":2,"total":2}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/travels/{travel_slug}/tours'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Requirements: Users can filter (search) the results by priceFrom, priceTo, dateFrom (from that startingDate) and dateTo (until that startingDate).User can sort the list by price asc and desc. They will always be sorted, after every additional user-provided filter, by startingDate asc.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      travel_slug:
+        name: travel_slug
+        description: 'The slug of the travel.'
+        required: true
+        example: best-travel
+        type: string
+        custom: []
+    cleanUrlParameters:
+      travel_slug: best-travel
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      priceFrom:
+        name: priceFrom
+        description: ''
+        required: false
+        example: 50896.441
+        type: number
+        custom: []
+      priceTo:
+        name: priceTo
+        description: ''
+        required: false
+        example: 2244006.434
+        type: number
+        custom: []
+      dateFrom:
+        name: dateFrom
+        description: 'Must be a valid date.'
+        required: false
+        example: '2023-07-10T05:48:19'
+        type: string
+        custom: []
+      dateTo:
+        name: dateTo
+        description: 'Must be a valid date.'
+        required: false
+        example: '2023-07-10T05:48:19'
+        type: string
+        custom: []
+      sortBy:
+        name: sortBy
+        description: 'Must be one of <code>price</code>.'
+        required: false
+        example: price
+        type: string
+        custom: []
+      sortOrder:
+        name: sortOrder
+        description: 'Must be one of <code>asc</code> or <code>desc</code>.'
+        required: false
+        example: desc
+        type: string
+        custom: []
+    cleanBodyParameters:
+      priceFrom: 50896.441
+      priceTo: 2244006.434
+      dateFrom: '2023-07-10T05:48:19'
+      dateTo: '2023-07-10T05:48:19'
+      sortBy: price
+      sortOrder: desc
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[],"links":{"first":"http:\/\/localhost\/api\/v1\/travels\/best-travel\/tours?page=1","last":"http:\/\/localhost\/api\/v1\/travels\/best-travel\/tours?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":null,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/v1\/travels\/best-travel\/tours?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/v1\/travels\/best-travel\/tours","per_page":15,"to":null,"total":0}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/admin/travels
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      is_public:
+        name: is_public
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: porro
+        type: string
+        custom: []
+      slug:
+        name: slug
+        description: ''
+        required: true
+        example: quidem
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: provident
+        type: string
+        custom: []
+      number_of_days:
+        name: number_of_days
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      is_public: false
+      name: porro
+      slug: quidem
+      description: provident
+      number_of_days: 16
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/admin/travels/{travel_slug}/tours'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      travel_slug:
+        name: travel_slug
+        description: 'The slug of the travel.'
+        required: true
+        example: best-travel
+        type: string
+        custom: []
+    cleanUrlParameters:
+      travel_slug: best-travel
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: in
+        type: string
+        custom: []
+      starting_date:
+        name: starting_date
+        description: 'Must be a valid date.'
+        required: true
+        example: '2023-07-10T05:48:19'
+        type: string
+        custom: []
+      ending_date:
+        name: ending_date
+        description: 'Must be a valid date. Must be a date after <code>starting_date</code>.'
+        required: true
+        example: '2029-09-22'
+        type: string
+        custom: []
+      price:
+        name: price
+        description: ''
+        required: true
+        example: 3807368.2319584
+        type: number
+        custom: []
+    cleanBodyParameters:
+      name: in
+      starting_date: '2023-07-10T05:48:19'
+      ending_date: '2029-09-22'
+      price: 3807368.2319584
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/admin/travels/{travel_slug}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      travel_slug:
+        name: travel_slug
+        description: 'The slug of the travel.'
+        required: true
+        example: best-travel
+        type: string
+        custom: []
+    cleanUrlParameters:
+      travel_slug: best-travel
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      is_public:
+        name: is_public
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: porro
+        type: string
+        custom: []
+      slug:
+        name: slug
+        description: ''
+        required: true
+        example: non
+        type: string
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: quisquam
+        type: string
+        custom: []
+      number_of_days:
+        name: number_of_days
+        description: ''
+        required: true
+        example: 6
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      is_public: true
+      name: porro
+      slug: non
+      description: quisquam
+      number_of_days: 6
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/login
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle the incoming request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
